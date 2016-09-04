@@ -1,0 +1,30 @@
+{
+  "name": "cloud-queue",
+  "version": "0.0.1",
+  "description": "Abstraction on top of various cloud queing systems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sqs",
+    "azure",
+    "rabitmq",
+    "ironmq",
+    "redis",
+    "rackspace"
+  ],
+  "author": "Andrew Peebles",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.4.2",
+    "async": "^2.0.1",
+    "aws-sdk": "^2.5.5",
+    "azure-sb": "^0.10.4",
+    "iron_mq": "git://github.com/iron-io/iron_mq_node#v3",
+    "node-uuid": "^1.4.7",
+    "redis": "^2.6.2",
+    "retry-unless": "^1.0.0",
+    "winston": "^2.2.0"
+  }
+}

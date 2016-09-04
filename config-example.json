@@ -1,0 +1,41 @@
+{
+  "SQS": {
+    "class": "SQS",
+    "connection": {
+      "accessKeyId": "xxxxxxxxxxxxx",
+      "secretAccessKey": "yyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "region": "us-west-2"
+    }
+  },
+  "IronMQ": {
+    "class": "IronMQ",
+    "connection": {
+      "host": "mq-aws-eu-west-1-1.iron.io",
+      "token": "xxxxxxxxxxxxxxxx",
+      "project_id": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+    },
+    "options": {
+      "maxNumberOfMessages": 10
+    }
+  },
+  "RabbitMQ": {
+    "class": "RabbitMQ",
+    "connection": {
+      "url": "amqp://admin:secret@rabbitmq"
+    }
+  },
+  "AzureQ": {
+    "class": "AzureQ",
+    "connection": {
+      "connectionString": "Endpoint=sb://XXXX.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yyyyyyyyyyyyyyyyyyy"
+    }
+  },
+  "RedisQ": {
+    "class": "RedisQ",
+    "connection": {
+      "port": 6379,
+      "host": "redis",
+      "options": {}
+    }
+  }
+}
