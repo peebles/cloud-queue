@@ -32,10 +32,12 @@ Redis emulates a strict fifo.  I am not sure if Azure is a strict fifo, but I do
 
 ## Usage
 
+```javascript
 let q = require( 'cloud-queue' )( config );
 q.enqueue( 'myQueueName', { my: "message" }, function( err ) {
    // ...
 });
+```
 
 ## Configuration
 
@@ -49,6 +51,7 @@ The object that you pass when creating a cloud queue looks like:
   connection: { CONNECTION-OPTIONS },
   options: { OTHER_QUEUE-SPECIFIC-OPTIONS }
 }
+```
 
 The class names supported as of this writing are; `SQS`, `IronMQ`, `RabbitMQ`, `AzureQ` and `RedisQ`.
 The `connection` object you pass depends on the class you choose.  See "config-example.json" for
