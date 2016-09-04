@@ -15,6 +15,10 @@
     "rackspace"
   ],
   "author": "Andrew Peebles",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peebles/cloud-queue.git"
+  },
   "license": "ISC",
   "dependencies": {
     "amqplib": "^0.4.2",
