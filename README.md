@@ -2,7 +2,7 @@
 
 This library acts as a common abstraction on top of a number of popular cloud queue
 implementations.  It provides a simple, common interface on top of SQS, IronMQ, RabbitMQ,
-Azure and Redis.  This means you can write your application code once, and with only config
+Azure, Rackspace and Redis.  This means you can write your application code once, and with only config
 file changes use any one of the implementations supported by this library.
 
 ## The Cloud Queue Model
@@ -27,7 +27,7 @@ that is processing the message dies before handling the message, its gone foreve
 
 There are queues and there are fifos.  SQS is a queue but it is not a fifo.  That is, the order in
 which things are enqueued is not the order in which they are dequeued.  SQS is suitable as a work queue,
-when you don't really care about the strict ordering of messages.  IronMQ and RabbitMQ are strict fifos.
+when you don't really care about the strict ordering of messages.  RackQ, IronMQ and RabbitMQ are strict fifos.
 Redis emulates a strict fifo.  I am not sure if Azure is a strict fifo, but I don't think it is.
 
 ## Usage
@@ -49,11 +49,15 @@ The object that you pass when creating a cloud queue looks like:
   logger: OPTIONAL-WINSTON-LIKE-LOGGER-TO-USE,
   retry_times: HOW-MANY-TIMES-TO-RETRY ( default: 6 ),
   connection: { CONNECTION-OPTIONS },
-  options: { OTHER_QUEUE-SPECIFIC-OPTIONS }
+  options: {
+    maxNumberOfMessages: 1,  // max number of messages to dequeue at a time
+    waitTimeSeconds: 5,      // if no messages, seconds to wait for another poll
+    visibilityTimeout: 30    // visibility timeout, iff applicable
+  }
 }
 ```
 
-The class names supported as of this writing are; `SQS`, `IronMQ`, `RabbitMQ`, `AzureQ` and `RedisQ`.
+The class names supported as of this writing are; `SQS`, `IronMQ`, `RabbitMQ`, `AzureQ`, `RackQ` and `RedisQ`.
 The `connection` object you pass depends on the class you choose.  See "config-example.json" for
 how the configuration should look for each class.
 

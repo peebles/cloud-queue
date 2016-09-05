@@ -30,6 +30,14 @@
       "connectionString": "Endpoint=sb://XXXX.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yyyyyyyyyyyyyyyyyyy"
     }
   },
+  "RackQ": {
+    "class": "RackQ",
+    "connection": {
+      "userName": "<my Rackspace user name>",
+      "apiKey": "<my Rackspace apiKey>",
+      "region": "dfw"
+    }
+  },
   "RedisQ": {
     "class": "RedisQ",
     "connection": {

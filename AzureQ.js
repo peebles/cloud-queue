@@ -11,7 +11,11 @@ module.exports = function( config ) {
     constructor() {
       super();
 
-      let defaults = {};
+      let defaults = {
+	visibilityTimeout: 30,
+        waitTimeSeconds: 5,
+        maxNumberOfMessages: 1,
+      };
       this.options = Object.assign( {}, defaults, config.options );
 
       try {
@@ -46,7 +50,11 @@ module.exports = function( config ) {
           () => { return gotit; },
 	  (cb) => {
 	    this.q.receiveQueueMessage( queue, { isPeekLock: true }, (err, _msg) => {
-	      if ( err && err == 'No messages to receive' ) return cb();
+	      if ( err && err == 'No messages to receive' ) {
+		return setTimeout( () => {
+		  cb();
+		}, this.options.waitTimeSeconds * 1000 );
+	      }
               if ( err ) return cb( new Error( err ) );
               gotit = true;
 	      msg = _msg;

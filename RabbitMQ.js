@@ -11,7 +11,11 @@ module.exports = function( config ) {
     constructor() {
       super();
 
-      let defaults = {};
+      let defaults = {
+	visibilityTimeout: 30,
+        waitTimeSeconds: 5,
+        maxNumberOfMessages: 1,
+      };
       this.options = Object.assign( {}, defaults, config.options );
 
       this.ch = null;
@@ -80,8 +84,8 @@ module.exports = function( config ) {
 	      this.ch.get( queue, { noAck: false }, ( err, _msg ) => {
 		if ( err ) return cb( err );
 		msg = _msg;
-		if ( msg == false ) return cb();
-		setTimeout( () => { return cb(); }, 500 );
+		if ( msg == false ) return setTimeout( () => { return cb(); }, this.options.waitTimeSeconds * 1000 );
+		else return cb();
 	      });
 	    },
 	    (err) => {

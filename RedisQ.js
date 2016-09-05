@@ -12,7 +12,11 @@ module.exports = function( config ) {
     constructor() {
       super();
 
-      let defaults = {};
+      let defaults = {
+	visibilityTimeout: 30,
+        waitTimeSeconds: 5,
+        maxNumberOfMessages: 1,
+      };
       this.options = Object.assign( {}, defaults, config.options );
 
       let redis = require( 'redis' );
@@ -42,7 +46,7 @@ module.exports = function( config ) {
           this.q.rpop( queue, ( err, uuid ) => {
             if ( err ) return cb( err );
             if ( ! uuid ) {
-              setTimeout( () => { cb(); }, 1000 );
+              setTimeout( () => { cb(); }, this.options.waitTimeSeconds * 1000 );
             }
             else {
               this.q.get( uuid, ( err, _msg ) => {
