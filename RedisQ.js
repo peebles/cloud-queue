@@ -34,8 +34,8 @@ module.exports = function( config ) {
     }
 
     _disconnect( cb ) {
+      this.q.on( 'end', cb );
       this.q.quit();
-      process.nextTick( cb );
     }
 
     _enqueue( queue, message, cb ) {
