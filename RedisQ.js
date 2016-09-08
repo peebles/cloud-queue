@@ -29,6 +29,15 @@ module.exports = function( config ) {
 
     }
 
+    _ready( cb ) {
+      this.q.on( 'ready', cb );
+    }
+
+    _disconnect( cb ) {
+      this.q.quit();
+      process.nextTick( cb );
+    }
+
     _enqueue( queue, message, cb ) {
       let uuid = gen.v4(); // create a key to store the message
       this.q.set( uuid, JSON.stringify( message ), (err) => {

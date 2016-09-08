@@ -20,6 +20,14 @@ module.exports = function( config ) {
       return false;
     }
 
+    ready( cb ) {
+      this._ready( cb );
+    }
+
+    disconnect( cb ) {
+      this._disconnect( cb );
+    }
+
     enqueue( queue, message, cb ) {
       retry({ times: config.retry_times || 6,
 	      interval: (retryCount) => {
@@ -73,6 +81,14 @@ module.exports = function( config ) {
 	// return true if we should stop, false if we should continue
 	return this._shouldStopTrying( err );
       }, cb );
+    }
+
+    _ready( cb ) {
+      process.nextTick( cb );
+    }
+
+    _disconnect( cb ) {
+      process.nextTick( cb );
     }
 
     _enqueue( queue, message, cb ) {
