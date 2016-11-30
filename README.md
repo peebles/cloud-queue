@@ -1,3 +1,6 @@
+**There is a new version of this library now, that supports Kafka and has a simpler programming interface.**  
+It is called cloud-queue2 and can be found [here](https://github.com/peebles/cloud-queue2).
+
 # Cloud Queue
 
 This library acts as a common abstraction on top of a number of popular cloud queue
